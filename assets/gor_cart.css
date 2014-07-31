@@ -1,0 +1,28 @@
+<style type="text.css">
+
+.filler{}
+
+.btn.btn-default.cart{
+
+}
+
+.btn.secondary.btn-default.cart{
+	
+}
+
+#cart .item a, #cart .remove a{
+	color: #3a3a3a !important;
+}
+
+#cart h1{
+	font-family: 'Knockout-Bantam';
+	color: #3a3a3a;
+	text-transform: uppercase;
+	font-size: 60px;
+}
+
+#step1 #overview{
+	background-color: green;
+}
+
+</style>

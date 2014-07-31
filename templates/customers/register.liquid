@@ -1,0 +1,101 @@
+{% layout settings.customer_layout %}
+
+<div id="customer-register">
+  <!--<div class="row">-->
+    <div id="register" class="span12">
+      <h2 class="title text-center">Create Account</h2>
+  			
+  			<div class="skumfidus">
+      	
+	  		<form role="form" class="form-horizontal" accept-charset="UTF-8" action="https://goods-of-record.myshopify.com/account" id="create_customer" method="post"><input name="form_type" value="create_customer" type="hidden"><input name="utf8" value="✓" type="hidden">
+			
+			
+
+				
+		    <!-- form 'create_customer' } -->
+		
+
+
+		      {{ form.errors | default_errors }}
+
+
+		<!--
+			      <div id="first_name" class="clearfix large_form form-group">
+			        <label for="first_name" class="label form-inline" >First Name</label>
+			        <input type="text" value="" name="customer[first_name]" id="first_name" class="text" size="30" />
+			      </div>
+
+			      <div id="last_name" class="clearfix large_form form-group">
+			        <label for="last_name" class="label">Last Name</label>
+			        <input type="text" value="" name="customer[last_name]" id="last_name" class="text" size="30" />
+			      </div>
+
+			      <div id="email" class="clearfix large_form form-group">
+			        <label for="email" class="label">Email Address</label>
+			        <input type="email" value="" name="customer[email]" id="email" class="text" size="30" />
+			      </div>
+		
+			      <div id="password" class="clearfix large_form form-group">
+			        <label for="password" class="label">Password</label>
+			        <input type="password" value="" name="customer[password]" id="password" class="password text" size="30" />
+			      </div>
+
+			      <div class="action_bottom form-group">
+			        <input class="btn" type="submit" value="Create" />
+			        <span class="note">or <a href="{{ shop.url }}">Return to Store</a></span>
+			      </div>
+			      	-->
+
+
+
+			     
+			      	   <div class="form-group">
+			      	   	<div class="col-sm-3"></div>
+					    <label for="first_name" class="col-sm-2 control-label">First Name</label>
+					    <div class="col-sm-4">
+					      <input type="text" name="customer[first_name]" class="form-control" id="first_name" placeholder="">
+					    </div>
+					    <div class="col-sm-3"></div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-sm-3"></div>
+					    <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+					    <div class="col-sm-4">
+					      <input type="text" name="customer[last_name]" class="form-control" id="last_name" placeholder="">
+					    </div>
+					    <div class="col-sm-3"></div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-sm-3"></div>
+					    <label for="email" class="col-sm-2 control-label">Email Address</label>
+					    <div class="col-sm-4">
+					      <input type="email" name="customer[password]" class="form-control" id="email" placeholder="">
+					    </div>
+					    <div class="col-sm-3"></div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-sm-3"></div>
+					    <label for="password" class="col-sm-2 control-label">Password</label>
+					    <div class="col-sm-4">
+					      <input type="password" class="form-control" id="inputPassword3" value="" name="customer[password]" placeholder="">
+					    </div>
+					    <div class="col-sm-3"></div>
+					  </div>
+					  <div class="form-group">
+					  	<div class="col-sm-3"></div>
+					    <div class="col-sm-offset-2 col-sm-4">
+					      <button type="submit" class="btn btn-default">Create</button>
+					      <span class="note">or <a href="{{ shop.url }}">Return to Store</a></span>
+					    </div>
+					    <div class="col-sm-3"></div>
+					  </div>
+
+				 
+	
+		</form>
+		    <!--{ endform }-->
+		</div>  <!--end of register form container--> 
+        
+    </div><!-- #register -->
+ <!-- </div>--><!-- .row -->
+</div><!-- #customer-register -->

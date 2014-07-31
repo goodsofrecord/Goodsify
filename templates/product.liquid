@@ -1,0 +1,114 @@
+
+
+
+<div class="col-xs-12 good" ><hr class="symbol-good"></div>
+<TABLE style="width: 100%;">
+	<TR>
+		<td class="col-xs-2"></td>
+		<TD class="col-xs-4" style="text-align: center; border-color: red; border-style: dotted;"><img src="{{product.featured_image | product_img_url: 'original' }}" alt="{{ product.featured_image.alt | escape }}"></TD>
+		<TD class="col-xs-4" style="text-align: center; border-color: red; border-style: dotted;">
+							<div class="containerthing" style="text-align: left;">
+								<h1 class="makerproducttitle">{{ product.title }}</h1>
+								<h2 class="makerproductprice">{{product.price |money }}</h2>
+								<form id="add-item-form" action="/cart/add" method="post" class="variants clearfix">
+							        <!-- Begin product options -->
+							        <div class="product-options {% if hide_default_title %}no-options {% endif %}">
+
+							       
+
+
+							         {% if product.variants.size > 1 %}
+										<select id="variant-select" name="id" class="product-info-options">
+											{% for variant in product.variants %}
+												{% if variant.available == true %}
+													<option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+												{% endif %}
+											{% endfor %}
+										</select>
+										<br />
+									{% else %}
+										<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+									{% endif %}
+
+
+
+
+
+
+
+							          {% if settings.display_quantity_dropdown %}
+							          <div class="selector-wrapper">
+							            <label>Quantity</label>
+							            <input id="quantity" type="number" name="quantity" value="1" class="tc item-quantity" />
+							          </div>
+							          {% endif %}
+
+							          <div class="purchase-section{% if product.variants.size > 1 %} multiple{% endif %}">
+							            <div class="purchase">
+							              {% unless product.available %}
+							              <p>Sold Out</p>
+							              {% else %}
+							              <input type="submit" id="add-to-cart" class="btn addtocart" name="add" value="Add to cart" />
+							              <div id="cart-animation" style="display:none">1</div>
+							              <div id="cartclicky" style="display:none" class="text-success">Item added to your cart. <a href="/cart">View Cart</a></div>
+							              
+							              {% endunless %}							     
+							            </div>
+							          </div>
+							        </div>
+							        <!-- End product options -->						       
+							      </form>					
+							</div>      		
+      </TD>
+      <td class="col-xs-2"></td>
+
+      
+	</TR>
+</TABLE>
+
+{{product.description}}
+
+
+
+
+<script>
+  var selectCallback = function(variant, selector) {
+    if (variant && variant.available) {
+      jQuery('#add-to-cart').removeAttr('disabled').removeClass('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+      if(variant.price < variant.compare_at_price){
+        jQuery('#price-preview').html(Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + " <del>" + Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}") + "</del>");
+      } else {
+        jQuery('#price-preview').html(Shopify.formatMoney(variant.price, "{{ shop.money_format }}"));
+      }
+    } else {
+      jQuery('#add-to-cart').addClass('disabled').attr('disabled', 'disabled'); // set add-to-cart button to unavailable class and disable button
+      var message = variant ? "Sold Out" : "Unavailable";
+      jQuery('#price-preview').text(message);
+    }
+  };
+  
+  jQuery(document).ready(function($){
+    new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+
+    // Add label if only one product option and it isn't 'Title'.
+    {% if product.options.size == 1 and product.options.first != 'Title' %}
+      $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
+    {% endif %}
+  
+    // Auto-select first available variant on page load.
+    {% assign found_one_in_stock = false %}
+    {% for variant in product.variants %}
+      {% if variant.available and found_one_in_stock == false %}
+        {% assign found_one_in_stock = true %}
+        {% for option in product.options %}
+        $('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+
+  });
+  </script>
+
+
+
+

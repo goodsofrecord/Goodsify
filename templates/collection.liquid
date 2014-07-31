@@ -1,0 +1,51 @@
+<!--<div id="collection">-->
+
+  <!--{% paginate collection.products by settings.pagination_limit %}-->
+  <!-- Begin collection info -->
+
+      <!-- Begin breadcrumb -->
+      <!-- End breadcrumb -->
+
+      <!-- Begin sort collection -->
+
+      <!-- End sort collection -->
+
+      <!-- Begin collection description -->
+    <!-- {% if collection.description != "" %}-->
+        <!--collection.description }-->
+      <!--{% endif %}-->
+      <!-- End collection description -->
+
+
+  <!-- End collection info -->
+
+<!--  {% if collection.products.size == 0 %}-->
+
+    <!--{% include 'helper-default-products' %}-->
+
+<!--  {% endif %}-->
+
+  <!--<div class="row products">-->
+    <!--{% for product in collection.products limit: settings.pagination_limit %}-->
+      <!--{% include 'product-loop' with collection.handle %}-->
+    <!--{% endfor %}-->
+  <!--</div>-->
+
+
+{% if collection.handle == "goods" %}
+    {% include 'goods' %}
+{% endif %} 
+
+{% if collection.handle == "woodandfaulk" %}  
+  {% include 'maker_woodandfaulk' %}  
+{% endif %}
+  
+
+ 
+
+
+  <!--{ include 'pagination' %}-->
+
+  <!--{% endpaginate %}-->
+
+<!--</div>-->
